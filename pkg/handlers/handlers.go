@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"goreact/pkg/config"
+	"goreact/pkg/models"
 	"goreact/pkg/render"
 	"net/http"
 )
@@ -27,9 +28,14 @@ func NewHandlers(r *Repository) {
 }
 
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "home.page.html")
+	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "about.page.html")
+	// perform some logic
+	stringMap := make(map[string]string)
+	stringMap["test"] = "Hello from passing data"
+	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
 }
