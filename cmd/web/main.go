@@ -29,7 +29,7 @@ func main() {
 
 	log.Printf("Starting server on port: %s", portNumber)
 
-	srv := http.Server {
+	srv := &http.Server {
 		Addr: portNumber,
 		Handler: routes(&app),
 	}
